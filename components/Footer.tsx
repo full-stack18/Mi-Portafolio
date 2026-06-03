@@ -1,7 +1,9 @@
 "use client";
-
+import { Fira_Code } from 'next/font/google';
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
+
+const codeFont = Fira_Code({ subsets: ['latin'] });
 
 const redesSociales = [
   { 
@@ -116,8 +118,9 @@ export default function Footer() {
           </motion.svg>
           
           <div className="text-center text-xs text-slate-600 space-y-1">
-            <p>© {new Date().getFullYear()} Juan Pedro Chaupin. Todos los derechos reservados.</p>
-            <p>Construido de forma nativa usando Next.js, Tailwind v4 y Framer Motion.</p>
+          <p className={codeFont.className}>
+    {`/* © ${new Date().getFullYear()} JP.Dev - Build successfully */`}
+  </p>
           </div>
         </div>
 

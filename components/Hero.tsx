@@ -2,9 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { VT323, Fira_Code } from 'next/font/google';
+
+const pixelFont = VT323({ weight: '400', subsets: ['latin'] });
+const codeFont = Fira_Code({ subsets: ['latin'] });
+
 // Importamos los nombres de exportación actualizados de la librería
-import { 
-  SiJava, 
+import {  
   SiJavascript, 
   SiPhp, 
   SiReact, 
@@ -12,8 +16,10 @@ import {
   SiMysql 
 } from '@icons-pack/react-simple-icons';
 
+import { FaJava } from 'react-icons/fa';
+
 const tecnologias = [
-  { name: 'Java', logo: <SiJava className="w-6 h-6" color="#EA2D42" />, color: 'hover:border-[#EA2D42]/50' },
+  { name: 'Java', logo: <FaJava className="w-6 h-6" color="#EA2D42" />, color: 'hover:border-[#EA2D42]/50' },
   { name: 'JavaScript', logo: <SiJavascript className="w-6 h-6" color="#F7DF1E" />, color: 'hover:border-[#F7DF1E]/50' },
   { name: 'PHP', logo: <SiPhp className="w-6 h-6" color="#777BB4" />, color: 'hover:border-[#777BB4]/50' },
   { name: 'React', logo: <SiReact className="w-6 h-6" color="#61DAFB" />, color: 'hover:border-[#61DAFB]/50' },
@@ -26,7 +32,7 @@ const trenInfinito = [...tecnologias, ...tecnologias];
 
 export default function Hero() {
   return (
-    <section id="inicio" className="min-h-screen flex flex-col justify-center bg-slate-950 text-white pt-24 px-6 md:px-12 overflow-hidden">
+    <section id="inicio" className="min-h-screen flex flex-col justify-center bg-slate-950 text-white pt-40 px-6 md:px-12 overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
         
         {/* TEXTO DE PRESENTACIÓN */}
@@ -38,8 +44,8 @@ export default function Hero() {
         >
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
             Hola, soy{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Juan Pedro
+            <span className={`bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent ${pixelFont.className} text-5xl md:text-7xl`}>              
+            Juan Pedro
             </span>
           </h1>
           <p className="text-lg md:text-xl text-slate-400 max-w-xl">
@@ -85,8 +91,8 @@ export default function Hero() {
         <div className="absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
 
-        <p className="text-center text-sm font-semibold tracking-wider text-slate-500 uppercase mb-8">
-          Tecnologías que domino
+        <p className={`text-center text-xs font-bold tracking-widest text-slate-500 uppercase mb-8 ${codeFont.className}`}>
+        {`// tecnologías que domino`}
         </p>
         
         <div className="w-full overflow-hidden">
