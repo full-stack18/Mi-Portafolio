@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+::selection {
+  background-color: rgba(6, 182, 212, 0.3); /* Cyan-500 con opacidad */
+  color: #fff;
+}
+
+/* Ocultar la barra de scroll nativa para que Lenis brille */
+::-webkit-scrollbar {
+  display: none;
 }
 
 @theme inline {

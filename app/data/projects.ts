@@ -1,25 +1,29 @@
 export interface Proyecto {
-    id: number;
-    titulo: string;
-    descripcion: string;
-    tecnologias: string[];
-    github?: string;
-    enlace?: string;
+  id: number;
+  titulo: string;
+  descripcion: string;
+  tecnologias: string[];
+  github?: string;
+  enlace?: string;
+}
+
+export const misProyectos: Proyecto[] = [
+  {
+    id: 1,
+    titulo: "Simulación de Sistemas - Vivanda",
+    descripcion: "Desarrollo de un proyecto de simulación de sistemas para analizar y optimizar los flujos de atención de la cadena de supermercados Vivanda.",
+    tecnologias: ["Java", "Simulación", "MySQL", "Análisis de Datos"],
+  },
+  {
+    id: 2,
+    titulo: "App Móvil de Panadería",
+    descripcion: "Diseño y planificación de una aplicación móvil para la gestión de productos y pedidos en una panadería local.",
+    tecnologias: ["React", "Node.js", "JavaScript"],
+  },
+  {
+    id: 3,
+    titulo: "Gestión de Inventario PHP",
+    descripcion: "Sistema de gestión integrado con bases de datos relacionales, utilizando consultas SQL complejas (ALTER TABLE, ENUM).",
+    tecnologias: ["PHP", "phpMyAdmin", "Bootstrap", "MySQL"],
   }
-  
-  export const misProyectos: Proyecto[] = [
-    {
-      id: 1,
-      titulo: "Sistema de Simulación de Procesos",
-      descripcion: "Modelado y simulación de flujos de atención y optimización de recursos para cadenas de suministro y atención al cliente.",
-      tecnologias: ["Java", "Simulación", "Data Analysis"],
-      github: "https://github.com/tu-usuario/simulacion"
-    },
-    {
-      id: 2,
-      titulo: "EcoHome Mobile App",
-      descripcion: "Aplicación móvil enfocada en la gestión eficiente y sostenible de recursos del hogar.",
-      tecnologias: ["React Native", "JavaScript", "Node.js"],
-      github: "https://github.com/tu-usuario/ecohome"
-    }
-  ];
+];
