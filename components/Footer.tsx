@@ -1,127 +1,148 @@
-"use client";
-import { Fira_Code } from 'next/font/google';
+'use client';
+
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Fira_Code, Dancing_Script } from 'next/font/google';
+// Línea 6 - elimina lucide-react completamente
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 
 const codeFont = Fira_Code({ subsets: ['latin'] });
+const signatureFont = Dancing_Script({ subsets: ['latin'], weight: '700' });
 
+// 2. Añadimos más redes con sus respectivos colores hex
 const redesSociales = [
   { 
-    icon: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>, 
-    name: 'Instagram', 
-    url: 'https://instagram.com/tu-usuario', 
-    color: 'hover:text-pink-500 hover:border-pink-500/40' 
+    name: 'Email', 
+    href: 'mailto:tu-correo@gmail.com', 
+    icon: <FaEnvelope className="w-6 h-6" />, 
+    hoverClass: 'group-hover:bg-[#EA4335] group-hover:border-[#EA4335] group-hover:text-white' 
   },
   { 
-    icon: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>, 
-    name: 'Facebook', 
-    url: 'https://facebook.com/tu-usuario', 
-    color: 'hover:text-blue-500 hover:border-blue-500/40' 
-  },
-  { 
-    icon: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>, 
-    name: 'GitHub', 
-    url: 'https://github.com/tu-usuario', 
-    color: 'hover:text-white hover:border-white/40' 
-  },
-  { 
-    icon: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>, 
     name: 'LinkedIn', 
-    url: 'https://linkedin.com/in/tu-usuario', 
-    color: 'hover:text-cyan-400 hover:border-cyan-400/40' 
+    href: 'https://linkedin.com/in/tu-perfil', 
+    icon: <FaLinkedin className="w-6 h-6" />, 
+    hoverClass: 'group-hover:bg-[#0A66C2] group-hover:border-[#0A66C2] group-hover:text-white' 
   },
+  { 
+    name: 'Github', 
+    href: 'https://github.com/tu-usuario', 
+    icon: <FaGithub className="w-6 h-6" />, 
+    hoverClass: 'group-hover:bg-[#ffffff] group-hover:border-[#ffffff] group-hover:text-black' 
+  },
+  { 
+    name: 'Instagram', 
+    href: 'https://github.com/tu-usuario', 
+    icon: <FaInstagram className="w-6 h-6" />, 
+    hoverClass: 'group-hover:text-white',
+    gradient: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)'
+  },
+  { 
+    name: 'Whatsapp', 
+    href: 'https://github.com/tu-usuario', 
+    icon: <FaWhatsapp className="w-6 h-6" />, 
+    hoverClass: 'group-hover:bg-[#0EF057] group-hover:border-[#0EF057] group-hover:text-white' 
+  }
 ];
-
-// Configuración con tipo explícito para esquivar errores de compilación
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 }
-  }
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.5, ease: "easeOut" } 
-  }
-};
-
-const svgFirmaVariants: Variants = {
-  hidden: { pathLength: 0, opacity: 0 },
-  visible: {
-    pathLength: 1,
-    opacity: 1,
-    transition: { duration: 2, ease: "easeInOut" }
-  }
-};
 
 export default function Footer() {
   return (
-    <footer id="contacto" className="bg-slate-950 border-t border-slate-900 text-slate-400 py-20 px-6 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto flex flex-col items-center space-y-12">
+    // 3. Añadimos min-h-[70vh] y flex flex-col para controlar la altura
+    <footer id="contacto" className="bg-[#0a0a0a] text-white pt-24 pb-12 px-4 border-t border-slate-800/80 relative z-20 min-h-[70vh] flex flex-col">
+      {/* Añadimos flex-1 para que ocupe el resto del espacio disponible */}
+      <div className="max-w-6xl  mx-auto w-full flex-1 flex flex-col">
         
-        {/* TÍTULO DE REDES */}
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold text-white tracking-tight">Sigueme en internet</h2>
-          <p className="text-sm text-slate-500">Conectemos y construyamos algo increíble juntos.</p>
-        </div>
-
-        {/* ENLACES REDES SOCIALES CON ANIMACIÓN DE SCROLL */}
+        {/* ENCABEZADO TERMINAL */}
         <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="space-y-3 mb-16 border-l-2 border-cyan-500 pl-4"
         >
-          {redesSociales.map((red, index) => (
-            <motion.a
-              key={index}
-              href={red.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(30, 41, 59, 0.5)' }}
-              className={`flex items-center gap-3 px-4 py-3 bg-slate-900/40 border border-slate-800 rounded-xl transition-all duration-300 text-slate-400 hover:saturate-100 saturate-0 ${red.color}`}
-            >
-              <span>{red.icon}</span>
-              <span className="text-sm font-medium">{red.name}</span>
-            </motion.a>
-          ))}
+          <h2 className="font-mono text-sm text-slate-500 uppercase tracking-widest">
+            <span className="text-cyan-500">0x02</span> // system.contacto
+          </h2>
         </motion.div>
 
-        {/* CONTENEDOR DE LA FIRMA ANIMADA */}
-        <div className="pt-8 flex flex-col items-center space-y-4 w-full">
-          <motion.svg
-            width="200"
-            height="80"
-            viewBox="0 0 200 80"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="text-cyan-400"
-          >
-            <motion.path
-              d="M20 40C35 20 60 15 70 35C80 55 50 65 65 45C80 25 110 30 120 45C130 60 145 40 160 42C175 44 190 38 185 45"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              variants={svgFirmaVariants}
-            />
-          </motion.svg>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 items-start mb-12">
           
-          <div className="text-center text-xs text-slate-600 space-y-1">
-          <p className={codeFont.className}>
-    {`/* © ${new Date().getFullYear()} JP.Dev - Build successfully */`}
-  </p>
-          </div>
+          {/* LADO IZQUIERDO: Título y Firma */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col justify-between h-full space-y-12"
+          >
+            <div>
+              <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-100 mb-6">
+                Contactame
+              </h3>
+              <p className="text-slate-400 font-mono text-sm max-w-sm leading-relaxed">
+                Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o visiones para el futuro.
+              </p>
+            </div>
+            
+            {/* LA FIRMA: AQUÍ CAMBIAS EL TEXTO */}
+            <div className="mt-8">
+              <span className={`${signatureFont.className} text-5xl md:text-6xl text-slate-300 opacity-80 hover:opacity-100 hover:text-cyan-400 transition-all cursor-default`}>
+                Juan
+              </span>
+            </div>
+          </motion.div>
+
+          {/* LADO DERECHO: Redes Sociales Cuadradas */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-6 md:items-end"
+          >
+            {redesSociales.map((red) => (
+              <a 
+                key={red.name}
+                href={red.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-6 w-fit"
+              >
+                {/* Cuadro del ícono con animación de color */}
+                <div 
+  className={`flex items-center justify-center w-12 h-12 border border-white/5 bg-white/[0.02] text-neutral-500 transition-all duration-300 ${red.hoverClass}`}
+  onMouseEnter={e => { 
+    if (red.gradient) {
+      e.currentTarget.style.background = red.gradient;
+      e.currentTarget.style.border = 'none'; // Cambiamos transparent por 'none' para que no pinte nada de borde
+      e.currentTarget.style.color = 'white';
+    }
+  }}
+  onMouseLeave={e => { 
+    if (red.gradient) {
+      e.currentTarget.style.background = '';
+      e.currentTarget.style.border = ''; // Restaura el borde original (border-white/5)
+      e.currentTarget.style.color = '';
+    }
+  }}
+>
+  {red.icon}
+</div>
+                {/* Texto al costado indicando la red */}
+                <span className="font-mono text-sm tracking-widest uppercase text-slate-500 group-hover:text-cyan-400 transition-colors duration-300 w-24">
+                  {red.name}
+                </span>
+              </a>
+            ))}
+          </motion.div>
+
+        </div>
+
+        {/* COPYRIGHT HASTA EL FONDO */}
+        {/* 4. Usamos mt-auto para empujar esta caja hasta abajo, separándola de la firma obligatoriamente */}
+        <div className="mt-1 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-slate-600 uppercase tracking-widest">
+          <span className="hover:text-cyan-500 transition-colors cursor-default">
+            &copy; 2026 JP.Dev
+          </span>
+          <span className="hidden md:inline hover:text-cyan-400 transition-colors">
+            // Construido con intención
+          </span>
         </div>
 
       </div>

@@ -133,25 +133,43 @@ export default function Hero() {
         </motion.div>
 
         {/* IMAGEN DE PERFIL */}
+        {/* IMAGEN DE PERFIL (Proporciones corregidas + Efecto Cyber-Pixel) */}
         <motion.div 
           style={{ y: yImage, opacity: opacityImage }}
           className="flex justify-center order-1 md:order-2"
         >
-          <div className="relative w-64 h-64 md:w-80 md:h-80 border border-slate-700 bg-slate-900 p-1 group">
+          {/* 1. CORRECCIÓN DE PROPORCIÓN: 
+            Cambiamos de un cuadrado a un formato de "Retrato" (Portrait). 
+            w-72 y h-[22rem] evita que la cara se vea aplastada.
+          */}
+          <div className="relative w-72 h-[22rem] md:w-80 md:h-[28rem] border border-slate-700 bg-slate-900 p-1 group">
             <div className="relative w-full h-full overflow-hidden">
+              
+              {/* 2. EL TRUCO DEL EFECTO PIXELADO:
+                Una cuadrícula CSS generada matemáticamente que se revela al hacer hover.
+              */}
+              <div 
+                className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  backgroundImage: 'linear-gradient(transparent 50%, rgba(0, 0, 0, 0.4) 50%), linear-gradient(90deg, transparent 50%, rgba(0, 0, 0, 0.4) 50%)',
+                  backgroundSize: '4px 4px'
+                }}
+              />
+
               <Image 
                 src="/tu-foto.jpg" 
                 alt="Juan Pedro" 
                 fill
-                style={{ objectFit: 'cover' }}
-                className="grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                // 3. object-cover y object-top aseguran que la imagen llene el contenedor sin deformarse
+                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                 sizes="(max-width: 768px) 256px, 320px"
                 priority
               />
             </div>
-            {/* Esquinas fijas cyan en la imagen que se expanden hacia adentro */}
-            <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-cyan-500 z-10 transition-all group-hover:w-full group-hover:h-full opacity-50"></div>
-            <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-cyan-500 z-10 transition-all group-hover:w-full group-hover:h-full opacity-50"></div>
+            
+            {/* Esquinas fijas cyan */}
+            <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-cyan-500 z-20 transition-all group-hover:w-full group-hover:h-full opacity-50"></div>
+            <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-cyan-500 z-20 transition-all group-hover:w-full group-hover:h-full opacity-50"></div>
           </div>
         </motion.div>
       </div>

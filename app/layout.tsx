@@ -19,13 +19,24 @@ export const metadata: Metadata = {
   description: "Portafolio de Juan Pedro, estudiante de Ingeniería de Sistemas en la Universidad Nacional de Cañete. Especializado en desarrollo de software, Java, React y bases de datos.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+// ESTA ES LA LÍNEA QUE NEXT.JS ESTÁ BUSCANDO:
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#0a0a0a] text-slate-300">
+        
+        {/* Cursor Personalizado interactivo */}
+        <CustomCursor />
+        
+        {/* Scroll fluido que envuelve toda la página */}
         <SmoothScroll>
           {children}
         </SmoothScroll>
+        
       </body>
     </html>
   );

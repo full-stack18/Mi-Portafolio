@@ -54,12 +54,12 @@ export default function StatusBar() {
       {/* LADO DERECHO: Música, Progreso y Reloj */}
       <div className="flex items-center gap-4 sm:gap-6">
         <span className="hidden md:inline hover:text-cyan-400 cursor-pointer transition-colors truncate max-w-[200px]">
-          ♪ Spotify - Disconnected
+          ♪ Spotify - Oasis
         </span>
         
-        {/* Componente numérico y visual de progreso */}
+        {/* COMPONENTE NUMÉRICO CORREGIDO */}
         <div className="flex items-center gap-2">
-          <span className="w-10 text-right">{progress} %</span>
+          <span className="w-12 text-right whitespace-nowrap tabular-nums">{progress}%</span>
           <span className="hidden sm:inline">-</span>
           <div className="hidden sm:block w-24 h-[1px] bg-slate-800 relative">
             <motion.div 
