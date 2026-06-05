@@ -10,8 +10,12 @@ export default function Navbar() {
         <span className={`text-2xl font-bold tracking-wider text-cyan-400 ${pixelFont.className}`}>
           JP.Dev
         </span>
-        <div className="flex gap-6 text-sm font-mono uppercase tracking-widest text-slate-500">
+        {/* Oculto en móviles (hidden) y visible en tablets/desktop (md:flex) */}
+        <div className="hidden md:flex gap-6 text-sm font-mono uppercase tracking-widest text-slate-500">
           <a href="#inicio" className="hover:text-cyan-400 transition-colors">Inicio</a>
+          <a href="#sobre-mi" className="hover:text-cyan-400 transition-colors">Sobre Mí</a>
+          <a href="#habilidades" className="hover:text-cyan-400 transition-colors">Habilidades</a>
+          <a href="#trayectoria" className="hover:text-cyan-400 transition-colors">Trayectoria</a>
           <a href="#proyectos" className="hover:text-cyan-400 transition-colors">Proyectos</a>
           <a href="#contacto" className="hover:text-cyan-400 transition-colors">Contacto</a>
         </div>

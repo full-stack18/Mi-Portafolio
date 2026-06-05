@@ -27,7 +27,7 @@ export default function ProjectsSection() {
   return (
     // FONDO ORIGINAL: bg-slate-950
     <section id="proyectos" className="py-24 bg-slate-950 text-white px-4 border-t border-slate-800/80 relative z-20">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto px-6 w-full">
         
         {/* ENCABEZADO ANIMADO TIPO TERMINAL */}
         <motion.div 
@@ -38,7 +38,7 @@ export default function ProjectsSection() {
           className="space-y-3 mb-16 border-l-2 border-cyan-500 pl-4"
         >
           <h2 className="font-mono text-sm text-slate-500 uppercase tracking-widest">
-            <span className="text-cyan-500">0x01</span> // proyectos.destacados
+            <span className="text-cyan-500">0x04</span> // proyectos.destacados
           </h2>
           <p className="text-slate-400 max-w-xl text-sm font-mono">
             Parseando repositorios locales y académicos... OK.
